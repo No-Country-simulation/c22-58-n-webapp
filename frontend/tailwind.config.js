@@ -5,7 +5,11 @@ module.exports = {
 		'./src/**/*.{js,ts,jsx,tsx}', // Asegúrate de incluir los archivos de tu proyecto
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ['"Segoe UI"', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [],
 };
