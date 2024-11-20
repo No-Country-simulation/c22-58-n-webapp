@@ -1,5 +1,12 @@
 import './index.css';
+import BarraNavegacionMenu from './components/BarraNavegacionMenu';
 
-function App() {}
+function App() {
+	return (
+		<>
+			<BarraNavegacionMenu />
+		</>
+	);
+}
 
 export default App;
