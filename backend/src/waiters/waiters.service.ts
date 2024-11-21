@@ -29,8 +29,8 @@ export class WaitersService {
       if (this.waiters.length === 0) {
         this.waiters = await this.prisma.waiter.findMany();
       }
-      const totalProducts: number = this.waiters.length;
-      const totalPages: number = Math.ceil(totalProducts / limit);
+      const totalWaiters: number = this.waiters.length;
+      const totalPages: number = Math.ceil(totalWaiters / limit);
       const waitersReturn: Waiter[] = this.waiters.slice(
         (page - 1) * limit,
         (page - 1) * limit + limit,
@@ -38,7 +38,7 @@ export class WaitersService {
       return {
         data: [...waitersReturn],
         meta: {
-          totalProducts: totalProducts,
+          totalWaiters: totalWaiters,
           totalPages: totalPages,
           page: page,
         },
@@ -49,15 +49,14 @@ export class WaitersService {
   }
 
   async findOne(term: string): Promise<Waiter> {
-    const product: Waiter = await this.findByTerm(term);
-    if (!product) {
+    const waiter: Waiter = await this.findByTerm(term);
+    if (!waiter) {
       const errorText = getErrorMessage('E001');
-      console.log(errorText);
       if (errorText) {
         throw new NotFoundException(errorText.replace('&', term));
       }
     }
-    return product;
+    return waiter;
   }
 
   async update(_id: string, updateWaiterDto: UpdateWaiterDto) {
@@ -76,14 +75,14 @@ export class WaitersService {
       await this.prisma.waiter.delete({
         where: { id: _id },
       });
-      return { message: `The product with id: "${_id}" was deleted` };
+      return { message: `The waiter with id: "${_id}" was deleted` };
     } catch (error) {
       handleDbExceptions(error);
     }
   }
 
   private async findByTerm(term: string): Promise<Waiter> {
-    const product: Waiter = isUUID(term)
+    const waiter: Waiter = isUUID(term)
       ? await this.prisma.waiter.findFirst({
           where: { id: term },
         })
@@ -95,6 +94,6 @@ export class WaitersService {
             ],
           },
         });
-    return product;
+    return waiter;
   }
 }
