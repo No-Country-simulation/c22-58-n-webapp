@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
 
-function LoginDashboard() {
+function Login() {
 
     type Inputs = {
         email: string
@@ -53,18 +54,18 @@ function LoginDashboard() {
                     />
                     {errors.password && <span className="text-red-500 text-sm -mt-5">{errors.password.message}</span>}
 
-                    <button type="submit" className="w-80 h-10 rounded-md bg-black text-white" disabled={isSubmitting}>{isSubmitting ? "Logging..." : "Login"}</button>
+                    <button type="submit" className="w-80 h-10 rounded-md bg-[#2C2C2C] text-white" disabled={isSubmitting}>{isSubmitting ? "Logging..." : "Login"}</button>
 
                     <span className="mt-6 border-b-2 border-black w-fit">Forgot password?</span>
                 </form>
 
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
                     No tenes tu cuenta?
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500"> Registrate</a>
+                    <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-500"> Registrate</Link>
                 </p>
             </div>
         </div>
     )
 }
 
-export default LoginDashboard
+export default Login

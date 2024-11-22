@@ -1,13 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginDashboard from './components/LoginDashboard/LoginDashboard';
+import Login from './components/Login/login';
+import Register from './components/Register/register';
 import './index.css';
 
 function App() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<LoginDashboard />} />
 
+				<Route path="/" element={<Login />} />
+				<Route path="/register" element={<Register />} />
 
 			</Routes>
 		</>
