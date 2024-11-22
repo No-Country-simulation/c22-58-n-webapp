@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/middlewares/prisma-service';
 import { CreateDishDto, UpdateDishDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
@@ -10,7 +10,6 @@ import { isUUID } from 'class-validator';
 @Injectable()
 export class DishesService {
   constructor(private prisma: PrismaService) {}
-  private readonly logger: Logger = new Logger('DishesService');
   private dishes: Dish[] = []; //TODO: Refactor handle cache
 
   async create(createDishDto: CreateDishDto): Promise<CreateDishDto> {
@@ -52,9 +51,7 @@ export class DishesService {
     const dish: Dish = await this.findByTerm(term);
     if (!dish) {
       const errorText = getErrorMessage('E001');
-      if (errorText) {
-        throw new NotFoundException(errorText.replace('&', term));
-      }
+      throw new NotFoundException(errorText.replace('&', term));
     }
     return dish;
   }

@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsPositive, IsString, Min } from 'class-validator';
+import { IsNumber, IsPositive, IsString, IsUUID, Min } from 'class-validator';
 
 export class CreateDishDto {
   @IsString()
@@ -15,4 +15,7 @@ export class CreateDishDto {
 
   @IsString()
   description: string;
+
+  @IsUUID()
+  category_id: string;
 }
