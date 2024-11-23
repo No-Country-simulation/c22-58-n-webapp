@@ -15,7 +15,10 @@ import { CreateDishDto, UpdateDishDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Dishes')
 @Controller('dishes')
 export class DishesController {
   constructor(private readonly dishesService: DishesService) {}
