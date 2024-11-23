@@ -1,4 +1,18 @@
+import MesaComponente from './MesaComponente';
+import useMesas from '../../store/Mesas';
+import { useState } from 'react';
+
 export default function Mesas() {
+	const posicionMesas = useMesas((state: any) => state.areas);
+	console.log(posicionMesas);
+	const [areaSeleccionada, setAreaSeleccionada] = useState(
+		posicionMesas[0].nombreArea
+	);
+
+	function handleClickOtherArea(str: string) {
+		setAreaSeleccionada(str);
+	}
+
 	return (
 		<main className="grid grid-cols-[20%,80%] grid-rows-[6rem,1fr,9rem] h-screen uppercase font-bold font-sans">
 			<header className="col-span-full flex items-center border-solid border-b-2 border-b-gray-500">
@@ -10,25 +24,44 @@ export default function Mesas() {
 					areas
 				</h2>
 				<ul className="">
-					<li className="py-3 hover:bg-[#d7e7ff] border-solid border-b-2 border-b-gray-500">
-						area 1
-					</li>
-					<li className="py-3 hover:bg-[#d7e7ff] border-solid border-b-2 border-b-gray-500">
-						area 2
-					</li>
-					<li className="py-3 hover:bg-[#d7e7ff] border-solid border-b-2 border-b-gray-500">
-						area 3
-					</li>
+					{posicionMesas.map((area: any) => {
+						return (
+							<li
+								className="py-3 hover:bg-[#d7e7ff] border-solid border-b-2 border-b-gray-500"
+								onClick={() => handleClickOtherArea(area.nombreArea)}
+								key={area.nombreArea}
+							>
+								{area.nombreArea}
+							</li>
+						);
+					})}
 				</ul>
 				<button className="uppercase absolute bottom-6 left-[50%] -translate-x-1/2 p-4">
 					pedido para llevar
 				</button>
 			</aside>
-			<section className="relative">
-				<h3 className="absolute p-4 text-[#27569d] text-xl">mesas</h3>
+			<section className="relative grid-cols-8 grid-rows-8 border- gap-1 grid justify-items-center items-center">
+				<h3 className="absolute p-4 text-[#27569d] text-xl -top-2 -left-2">
+					mesas
+				</h3>
+				{posicionMesas.map((area: any) => {
+					if (area.nombreArea === areaSeleccionada) {
+						return area.mesas.map((mesitas: any) => {
+							console.log(mesitas);
+							return (
+								<MesaComponente
+									key={mesitas.id}
+									y={mesitas.y}
+									x={mesitas.x}
+									numero={mesitas.id}
+								/>
+							);
+						});
+					}
+				})}
 			</section>
-			<footer className="flex">
-				<ul className="mr-auto flex flex-col justify-evenly">
+			<footer className="flex border-solid border-t-2 border-t-gray-500">
+				<ul className="mr-auto flex flex-col justify-evenly ml-2">
 					<li className="flex">
 						<div className="border-solid border-b-2 border-gray-500 bg-gray-500 rounded-full w-6 mr-2"></div>
 						mesa disponible
