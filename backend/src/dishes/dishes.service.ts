@@ -25,9 +25,7 @@ export class DishesService {
   async findAll(paginationDto: PaginationDto) {
     try {
       const { page, limit } = paginationDto;
-      if (this.dishes.length === 0) {
-        this.dishes = await this.prisma.dish.findMany();
-      }
+      this.dishes = await this.prisma.dish.findMany();
       const totalDishes: number = this.dishes.length;
       const totalPages: number = Math.ceil(totalDishes / limit);
       const dishesReturn: Dish[] = this.dishes.slice(
