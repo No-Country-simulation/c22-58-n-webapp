@@ -9,7 +9,13 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
   
-
+   app.enableCors({
+    origin: [/^https?:\/\/localhost(:\d+)?$/],
+    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
+  
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -17,7 +23,7 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-
+  
     const config = new DocumentBuilder()
       .setTitle('Dishflow')
       .setDescription('Restaurant Internal Management App')
@@ -28,7 +34,6 @@ async function bootstrap() {
 
     const documentFactory = () => SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('docs', app, documentFactory);
-
 
   await app.listen(envs.port);
   logger.log(`App running on port ${envs.port}`);
