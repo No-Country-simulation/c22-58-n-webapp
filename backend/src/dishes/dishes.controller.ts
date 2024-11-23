@@ -11,9 +11,8 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { DishesService } from './dishes.service';
-import { CreateDishDto } from './dto';
+import { CreateDishDto, UpdateDishDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
-import { UpdateWaiterDto } from 'src/waiters/dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
 
@@ -47,9 +46,9 @@ export class DishesController {
   @Patch(':id')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() updateDishesDto: UpdateWaiterDto,
+    @Body() updateDishDto: UpdateDishDto,
   ) {
-    return this.dishesService.update(id, updateDishesDto);
+    return this.dishesService.update(id, updateDishDto);
   }
 
   @HttpCode(200)

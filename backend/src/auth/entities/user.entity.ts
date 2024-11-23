@@ -8,5 +8,5 @@ export class User {
   public password: string;
   public email: string;
   public isActive: boolean;
-  public rol: string[];
+  public role: string[];
 }

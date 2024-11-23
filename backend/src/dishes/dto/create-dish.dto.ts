@@ -17,5 +17,5 @@ export class CreateDishDto {
   description: string;
 
   @IsUUID()
-  category_id: string;
+  categoryId: string;
 }
