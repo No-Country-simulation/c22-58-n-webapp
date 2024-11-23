@@ -6,9 +6,12 @@ import {
   Get,
   Query,
   Param,
+  Patch,
+  ParseUUIDPipe,
+  Delete,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
-import { CreateCategoryDto } from './dto';
+import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
 import { PaginationDto } from 'src/common/dto';
@@ -38,16 +41,20 @@ export class CategoriesController {
     return this.categoriesService.findOne(term);
   }
 
-  //   @Patch(':id')
-  //   update(
-  //     @Param('id') id: string,
-  //     @Body() updateCategoryDto: UpdateCategoryDto,
-  //   ) {
-  //     return this.categoriesService.update(+id, updateCategoryDto);
-  //   }
+  @HttpCode(201)
+  @Auth(ValidRoles.manager)
+  @Patch(':id')
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
+    return this.categoriesService.update(id, updateCategoryDto);
+  }
 
-  //   @Delete(':id')
-  //   remove(@Param('id') id: string) {
-  //     return this.categoriesService.remove(+id);
-  //   }
+  @HttpCode(200)
+  @Auth(ValidRoles.manager)
+  @Delete(':id')
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.categoriesService.remove(id);
+  }
 }

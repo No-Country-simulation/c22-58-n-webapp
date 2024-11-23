@@ -6,6 +6,7 @@ import { PrismaService } from 'src/middlewares';
 import { PaginationDto } from 'src/common/dto';
 import { isUUID } from 'class-validator';
 import { getErrorMessage } from 'src/common/messages/error_messages';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
@@ -27,9 +28,11 @@ export class CategoriesService {
   async findAll(paginationDto: PaginationDto) {
     try {
       const { page, limit } = paginationDto;
-      if (this.categories.length === 0) {
-        this.categories = await this.prisma.category.findMany();
-      }
+      this.categories = await this.prisma.category.findMany({
+        include: {
+          dishes: true,
+        },
+      });
       const totalCategories: number = this.categories.length;
       const totalPages: number = Math.ceil(totalCategories / limit);
       const categoriesReturn: Category[] = this.categories.slice(
@@ -58,22 +61,42 @@ export class CategoriesService {
     return category;
   }
 
-  //   update(id: number, updateCategoryDto: UpdateCategoryDto) {
-  //     return `This action updates a #${id} category`;
-  //   }
+  async update(_id: string, updateCategoryDto: UpdateCategoryDto) {
+    try {
+      return await this.prisma.category.update({
+        where: { id: _id },
+        data: updateCategoryDto,
+      });
+    } catch (error) {
+      handleDbExceptions(error);
+    }
+  }
 
-  //   remove(id: number) {
-  //     return `This action removes a #${id} category`;
-  //   }
+  async remove(_id: string) {
+    try {
+      await this.prisma.category.delete({
+        where: { id: _id },
+      });
+      return { message: `The category with id: "${_id}" was deleted` };
+    } catch (error) {
+      handleDbExceptions(error);
+    }
+  }
 
   private async findByTerm(term: string): Promise<Category> {
     const category: Category = isUUID(term)
       ? await this.prisma.category.findFirst({
           where: { id: term },
+          include: {
+            dishes: true,
+          },
         })
       : await this.prisma.category.findFirst({
           where: {
             catName: { equals: term, mode: 'insensitive' },
+          },
+          include: {
+            dishes: true,
           },
         });
     return category;

@@ -49,6 +49,12 @@ CREATE UNIQUE INDEX "User_password_key" ON "User"("password");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Category_id_key" ON "Category"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_catName_key" ON "Category"("catName");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Category_id_catName_key" ON "Category"("id", "catName");
 
 -- CreateIndex
@@ -56,9 +62,6 @@ CREATE UNIQUE INDEX "Dish_id_key" ON "Dish"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Dish_dishName_key" ON "Dish"("dishName");
-
--- CreateIndex
-CREATE INDEX "Dish_categoryId_categoryName_idx" ON "Dish"("categoryId", "categoryName");
 
 -- AddForeignKey
 ALTER TABLE "Dish" ADD CONSTRAINT "Dish_categoryId_categoryName_fkey" FOREIGN KEY ("categoryId", "categoryName") REFERENCES "Category"("id", "catName") ON DELETE RESTRICT ON UPDATE CASCADE;
