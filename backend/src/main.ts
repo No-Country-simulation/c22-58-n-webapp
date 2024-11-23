@@ -23,6 +23,7 @@ async function bootstrap() {
       .setDescription('Restaurant Internal Management App')
       .setVersion('1.0')
       .addTag('API')
+      .addBearerAuth()
       .build();
 
     const documentFactory = () => SwaggerModule.createDocument(app, config);
