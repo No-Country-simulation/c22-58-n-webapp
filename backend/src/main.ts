@@ -14,6 +14,15 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
+
+  app.enableCors({
+    origin: [/^https?:\/\/localhost(:\d+)?$/],
+    methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
+
+  
   await app.listen(envs.port);
   logger.log(`App running on port ${envs.port}`);
 }
