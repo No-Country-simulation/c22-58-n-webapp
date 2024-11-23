@@ -3,24 +3,26 @@ import { isUUID } from 'class-validator';
 import { PrismaService } from 'src/middlewares/prisma-service';
 import { UpdateUserDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
-import { User } from 'src/auth/entities/user.entity';
+import { User2 } from './entities/user2.entity';
 import { handleDbExceptions } from 'src/common/helpers';
 import { getErrorMessage } from 'src/common/messages/error_messages';
 
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
-  private users: User[] = []; //TODO: Refactor handle cache
+  private users: User2[] = []; //TODO: Refactor handle cache
 
   async findAll(paginationDto: PaginationDto) {
     try {
       const { page, limit } = paginationDto;
       if (this.users.length === 0) {
-        this.users = await this.prisma.user.findMany();
+        this.users = await this.prisma.user.findMany({
+          omit: { password: true },
+        });
       }
       const totalUsers: number = this.users.length;
       const totalPages: number = Math.ceil(totalUsers / limit);
-      const userssReturn: User[] = this.users.slice(
+      const userssReturn: User2[] = this.users.slice(
         (page - 1) * limit,
         (page - 1) * limit + limit,
       );
@@ -37,8 +39,8 @@ export class UsersService {
     }
   }
 
-  async findOne(term: string): Promise<User> {
-    const user: User = await this.findByTerm(term);
+  async findOne(term: string): Promise<User2> {
+    const user: User2 = await this.findByTerm(term);
     if (!user) {
       const errorText = getErrorMessage('E001');
       throw new NotFoundException(errorText.replace('&', term));
@@ -50,6 +52,7 @@ export class UsersService {
     try {
       return await this.prisma.user.update({
         where: { id: _id },
+        omit: { password: true },
         data: updateUserDto,
       });
     } catch (error) {
@@ -68,10 +71,11 @@ export class UsersService {
     }
   }
 
-  private async findByTerm(term: string): Promise<User> {
-    const user: User = isUUID(term)
+  private async findByTerm(term: string): Promise<User2> {
+    const user: User2 = isUUID(term)
       ? await this.prisma.user.findFirst({
           where: { id: term },
+          omit: { password: true },
         })
       : await this.prisma.user.findFirst({
           where: {
@@ -80,6 +84,7 @@ export class UsersService {
               { userName: { equals: term, mode: 'insensitive' } },
             ],
           },
+          omit: { password: true },
         });
     return user;
   }

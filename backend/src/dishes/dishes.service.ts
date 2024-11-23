@@ -85,7 +85,7 @@ export class DishesService {
         })
       : await this.prisma.dish.findFirst({
           where: {
-            name: { equals: term, mode: 'insensitive' },
+            dishName: { equals: term, mode: 'insensitive' },
           },
         });
     return dish;

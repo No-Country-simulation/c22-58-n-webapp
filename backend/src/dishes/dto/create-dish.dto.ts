@@ -3,7 +3,7 @@ import { IsNumber, IsPositive, IsString, IsUUID, Min } from 'class-validator';
 
 export class CreateDishDto {
   @IsString()
-  name: string;
+  dishName: string;
 
   @IsNumber({
     maxDecimalPlaces: 4,
@@ -18,4 +18,7 @@ export class CreateDishDto {
 
   @IsUUID()
   categoryId: string;
+
+  @IsString()
+  categoryName: string;
 }

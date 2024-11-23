@@ -1,6 +1,3 @@
--- CreateEnum
-CREATE TYPE "Role" AS ENUM ('manager', 'waiter', 'chef', 'user');
-
 -- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL,
@@ -10,7 +7,7 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "email" VARCHAR(100) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
-    "role" "Role" NOT NULL DEFAULT 'user',
+    "role" VARCHAR(10)[] DEFAULT ARRAY['manager']::VARCHAR(10)[],
     "createAt" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATE NOT NULL,
 
@@ -20,7 +17,7 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Category" (
     "id" UUID NOT NULL,
-    "name" VARCHAR(100) NOT NULL,
+    "catName" VARCHAR(100) NOT NULL,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -28,10 +25,11 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Dish" (
     "id" UUID NOT NULL,
-    "name" VARCHAR(100) NOT NULL,
+    "dishName" VARCHAR(100) NOT NULL,
     "price" REAL NOT NULL,
     "description" TEXT NOT NULL,
     "categoryId" UUID NOT NULL,
+    "categoryName" VARCHAR(100) NOT NULL,
     "createAt" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATE NOT NULL,
 
@@ -51,13 +49,16 @@ CREATE UNIQUE INDEX "User_password_key" ON "User"("password");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_id_key" ON "Category"("id");
+CREATE UNIQUE INDEX "Category_id_catName_key" ON "Category"("id", "catName");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Dish_id_key" ON "Dish"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Dish_categoryId_key" ON "Dish"("categoryId");
+CREATE UNIQUE INDEX "Dish_dishName_key" ON "Dish"("dishName");
+
+-- CreateIndex
+CREATE INDEX "Dish_categoryId_categoryName_idx" ON "Dish"("categoryId", "categoryName");
 
 -- AddForeignKey
-ALTER TABLE "Dish" ADD CONSTRAINT "Dish_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Dish" ADD CONSTRAINT "Dish_categoryId_categoryName_fkey" FOREIGN KEY ("categoryId", "categoryName") REFERENCES "Category"("id", "catName") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,17 +1,17 @@
 import {
   Controller,
-  //Get,
   Post,
   Body,
-  //Patch,
-  //Param,
-  //Delete,
   HttpCode,
+  Get,
+  Query,
+  Param,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
+import { PaginationDto } from 'src/common/dto';
 
 @Controller('categories')
 export class CategoriesController {
@@ -24,15 +24,19 @@ export class CategoriesController {
     return this.categoriesService.create(createCategoryDto);
   }
 
-  //   @Get()
-  //   findAll() {
-  //     return this.categoriesService.findAll();
-  //   }
+  @HttpCode(200)
+  @Auth(ValidRoles.manager, ValidRoles.waiter, ValidRoles.chef, ValidRoles.user)
+  @Get()
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.categoriesService.findAll(paginationDto);
+  }
 
-  //   @Get(':id')
-  //   findOne(@Param('id') id: string) {
-  //     return this.categoriesService.findOne(+id);
-  //   }
+  @HttpCode(200)
+  @Auth(ValidRoles.manager, ValidRoles.waiter, ValidRoles.chef, ValidRoles.user)
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.categoriesService.findOne(term);
+  }
 
   //   @Patch(':id')
   //   update(

@@ -1,5 +1,5 @@
 export class Dish {
-  name: string;
+  dishName: string;
   price: number;
   description: string;
 }
