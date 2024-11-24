@@ -29,11 +29,19 @@ CREATE TABLE "Dish" (
     "price" REAL NOT NULL,
     "description" TEXT NOT NULL,
     "categoryId" UUID NOT NULL,
-    "categoryName" VARCHAR(100) NOT NULL,
     "createAt" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATE NOT NULL,
 
     CONSTRAINT "Dish_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DishImage" (
+    "id" UUID NOT NULL,
+    "imgUrl" TEXT NOT NULL,
+    "dishId" UUID NOT NULL,
+
+    CONSTRAINT "DishImage_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -63,5 +71,14 @@ CREATE UNIQUE INDEX "Dish_id_key" ON "Dish"("id");
 -- CreateIndex
 CREATE UNIQUE INDEX "Dish_dishName_key" ON "Dish"("dishName");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "DishImage_id_key" ON "DishImage"("id");
+
+-- CreateIndex
+CREATE INDEX "DishImage_dishId_idx" ON "DishImage"("dishId");
+
 -- AddForeignKey
-ALTER TABLE "Dish" ADD CONSTRAINT "Dish_categoryId_categoryName_fkey" FOREIGN KEY ("categoryId", "categoryName") REFERENCES "Category"("id", "catName") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Dish" ADD CONSTRAINT "Dish_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DishImage" ADD CONSTRAINT "DishImage_dishId_fkey" FOREIGN KEY ("dishId") REFERENCES "Dish"("id") ON DELETE CASCADE ON UPDATE CASCADE;
