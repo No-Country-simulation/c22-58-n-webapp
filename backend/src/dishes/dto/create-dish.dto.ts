@@ -1,5 +1,12 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsPositive, IsString, IsUUID, Min } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUUID,
+  Min,
+} from 'class-validator';
 
 export class CreateDishDto {
   @IsString()
@@ -21,4 +28,7 @@ export class CreateDishDto {
 
   @IsString()
   categoryName: string;
+
+  @IsArray()
+  images: string[];
 }

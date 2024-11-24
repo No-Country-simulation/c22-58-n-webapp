@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { handleDbExceptions } from 'src/common/helpers';
-import { Category } from './entities/category.entity';
 import { PrismaService } from 'src/middlewares';
 import { PaginationDto } from 'src/common/dto';
 import { isUUID } from 'class-validator';
 import { getErrorMessage } from 'src/common/messages/error_messages';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Category } from '@prisma/client';
 
 @Injectable()
 export class CategoriesService {

@@ -3,20 +3,38 @@ import { PrismaService } from 'src/middlewares/prisma-service';
 import { CreateDishDto, UpdateDishDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
 import { handleDbExceptions } from 'src/common/helpers';
-import { Dish } from './entities/dish.entity';
 import { getErrorMessage } from 'src/common/messages/error_messages';
 import { isUUID } from 'class-validator';
+import { Dish } from '@prisma/client';
 
 @Injectable()
 export class DishesService {
   constructor(private prisma: PrismaService) {}
   private dishes: Dish[] = []; //TODO: Refactor handle cache
 
-  async create(createDishDto: CreateDishDto): Promise<CreateDishDto> {
+  async create(createDishDto: CreateDishDto) {
     try {
-      return await this.prisma.dish.create({
-        data: createDishDto,
+      const { images, ...restProps } = createDishDto;
+      const dish = await this.prisma.dish.create({
+        data: { ...restProps },
       });
+
+      images.map(async (image) => {
+        await this.prisma.dishImage.create({
+          data: {
+            imgUrl: image,
+            dishId: dish.id,
+          },
+        });
+      });
+      return {
+        data: [
+          {
+            ...dish,
+            dishImages: [...images],
+          },
+        ],
+      };
     } catch (error) {
       handleDbExceptions(error);
     }
@@ -25,13 +43,23 @@ export class DishesService {
   async findAll(paginationDto: PaginationDto) {
     try {
       const { page, limit } = paginationDto;
-      this.dishes = await this.prisma.dish.findMany();
+      this.dishes = await this.prisma.dish.findMany({
+        include: {
+          dishImages: {
+            omit: {
+              id: true,
+              dishId: true,
+            },
+          },
+        },
+      });
       const totalDishes: number = this.dishes.length;
       const totalPages: number = Math.ceil(totalDishes / limit);
-      const dishesReturn: Dish[] = this.dishes.slice(
+      const dishesReturn = this.dishes.slice(
         (page - 1) * limit,
         (page - 1) * limit + limit,
       );
+
       return {
         data: [...dishesReturn],
         meta: {
@@ -56,10 +84,29 @@ export class DishesService {
 
   async update(_id: string, updateDishDto: UpdateDishDto) {
     try {
-      return await this.prisma.dish.update({
+      const { images = [], ...restProps } = updateDishDto;
+      const dishUpdate = await this.prisma.dish.update({
         where: { id: _id },
-        data: updateDishDto,
+        data: {
+          ...restProps,
+          dishImages: {
+            deleteMany: {},
+          },
+        },
       });
+      if (dishUpdate) {
+        images.map(async (image) => {
+          await this.prisma.dishImage.create({
+            data: {
+              imgUrl: image,
+              dishId: dishUpdate.id,
+            },
+          });
+        });
+      }
+      return {
+        data: [{ dishUpdate, dishImages: [...images] }],
+      };
     } catch (error) {
       handleDbExceptions(error);
     }
@@ -80,10 +127,20 @@ export class DishesService {
     const dish: Dish = isUUID(term)
       ? await this.prisma.dish.findFirst({
           where: { id: term },
+          include: {
+            dishImages: {
+              omit: { id: true, dishId: true },
+            },
+          },
         })
       : await this.prisma.dish.findFirst({
           where: {
             dishName: { equals: term, mode: 'insensitive' },
+          },
+          include: {
+            dishImages: {
+              omit: { id: true, dishId: true },
+            },
           },
         });
     return dish;

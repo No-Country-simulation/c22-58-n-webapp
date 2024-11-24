@@ -15,7 +15,12 @@ import { CreateDishDto, UpdateDishDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiTags('Dishes')
