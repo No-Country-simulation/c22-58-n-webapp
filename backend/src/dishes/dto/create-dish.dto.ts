@@ -26,9 +26,6 @@ export class CreateDishDto {
   @IsUUID()
   categoryId: string;
 
-  @IsString()
-  categoryName: string;
-
   @IsArray()
   images: string[];
 }

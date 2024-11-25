@@ -1,53 +1,10 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE "role" (
+    "id" UUID NOT NULL,
+    "name" VARCHAR(100) NOT NULL,
 
-  - You are about to drop the `Category` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Client` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Dish` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DishImage` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Employee` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Table` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "Dish" DROP CONSTRAINT "Dish_categoryId_fkey";
-
--- DropForeignKey
-ALTER TABLE "DishImage" DROP CONSTRAINT "DishImage_dishId_fkey";
-
--- DropForeignKey
-ALTER TABLE "order_bill" DROP CONSTRAINT "order_bill_clientId_fkey";
-
--- DropForeignKey
-ALTER TABLE "order_bill" DROP CONSTRAINT "order_bill_employeeId_fkey";
-
--- DropForeignKey
-ALTER TABLE "order_bill" DROP CONSTRAINT "order_bill_tableId_fkey";
-
--- DropForeignKey
-ALTER TABLE "order_detail" DROP CONSTRAINT "order_detail_dishId_fkey";
-
--- DropTable
-DROP TABLE "Category";
-
--- DropTable
-DROP TABLE "Client";
-
--- DropTable
-DROP TABLE "Dish";
-
--- DropTable
-DROP TABLE "DishImage";
-
--- DropTable
-DROP TABLE "Employee";
-
--- DropTable
-DROP TABLE "Table";
-
--- DropTable
-DROP TABLE "User";
+    CONSTRAINT "role_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "user" (
@@ -63,22 +20,6 @@ CREATE TABLE "user" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "employee" (
-    "id" UUID NOT NULL,
-    "firstName" VARCHAR(100) NOT NULL,
-    "lastName" VARCHAR(100) NOT NULL,
-    "userName" VARCHAR(100) NOT NULL,
-    "password" VARCHAR(60) NOT NULL,
-    "email" VARCHAR(100) NOT NULL,
-    "isActive" BOOLEAN NOT NULL DEFAULT true,
-    "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "role" VARCHAR(10)[] DEFAULT ARRAY['manager']::VARCHAR(10)[],
-
-    CONSTRAINT "employee_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -101,6 +42,29 @@ CREATE TABLE "table" (
     "capacity" INTEGER NOT NULL,
 
     CONSTRAINT "table_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "order_bill" (
+    "id" UUID NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "total" DOUBLE PRECISION NOT NULL,
+    "clientId" UUID NOT NULL,
+    "userId" UUID NOT NULL,
+    "tableId" UUID NOT NULL,
+
+    CONSTRAINT "order_bill_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "order_detail" (
+    "id" UUID NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "unit_price" DOUBLE PRECISION NOT NULL,
+    "orderBillId" UUID NOT NULL,
+    "dishId" UUID NOT NULL,
+
+    CONSTRAINT "order_detail_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -134,6 +98,9 @@ CREATE TABLE "category" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "role_id_key" ON "role"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "user_id_key" ON "user"("id");
 
 -- CreateIndex
@@ -146,15 +113,6 @@ CREATE UNIQUE INDEX "user_password_key" ON "user"("password");
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "employee_id_key" ON "employee"("id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "employee_userName_key" ON "employee"("userName");
-
--- CreateIndex
-CREATE UNIQUE INDEX "employee_email_key" ON "employee"("email");
-
--- CreateIndex
 CREATE UNIQUE INDEX "client_id_key" ON "client"("id");
 
 -- CreateIndex
@@ -165,6 +123,12 @@ CREATE UNIQUE INDEX "table_id_key" ON "table"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "table_tableNumber_key" ON "table"("tableNumber");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "order_bill_id_key" ON "order_bill"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "order_detail_id_key" ON "order_detail"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "dish_id_key" ON "dish"("id");
@@ -197,10 +161,13 @@ CREATE UNIQUE INDEX "category_id_categoryName_key" ON "category"("id", "category
 ALTER TABLE "order_bill" ADD CONSTRAINT "order_bill_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "order_bill" ADD CONSTRAINT "order_bill_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "employee"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "order_bill" ADD CONSTRAINT "order_bill_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "order_bill" ADD CONSTRAINT "order_bill_tableId_fkey" FOREIGN KEY ("tableId") REFERENCES "table"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "order_detail" ADD CONSTRAINT "order_detail_orderBillId_fkey" FOREIGN KEY ("orderBillId") REFERENCES "order_bill"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "order_detail" ADD CONSTRAINT "order_detail_dishId_fkey" FOREIGN KEY ("dishId") REFERENCES "dish"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

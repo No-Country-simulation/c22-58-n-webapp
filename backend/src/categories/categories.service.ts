@@ -30,7 +30,7 @@ export class CategoriesService {
       const { page, limit } = paginationDto;
       this.categories = await this.prisma.category.findMany({
         include: {
-          dishes: true,
+          dishes: { include: { dishImages: true } },
         },
       });
       const totalCategories: number = this.categories.length;
@@ -88,15 +88,15 @@ export class CategoriesService {
       ? await this.prisma.category.findFirst({
           where: { id: term },
           include: {
-            dishes: true,
+            dishes: { include: { dishImages: true } },
           },
         })
       : await this.prisma.category.findFirst({
           where: {
-            catName: { equals: term, mode: 'insensitive' },
+            categoryName: { equals: term, mode: 'insensitive' },
           },
           include: {
-            dishes: true,
+            dishes: { include: { dishImages: true } },
           },
         });
     return category;
