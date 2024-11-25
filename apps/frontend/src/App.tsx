@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './components/Login/login';
-import Register from './components/Register/register';
+import Login from '../../../frontend/src/components/login';
+import Register from '../../../frontend/src/components/register';
 import './index.css';
 
 function App() {
