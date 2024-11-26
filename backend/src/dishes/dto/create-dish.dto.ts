@@ -1,9 +1,16 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsPositive, IsString, IsUUID, Min } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsPositive,
+  IsString,
+  IsUUID,
+  Min,
+} from 'class-validator';
 
 export class CreateDishDto {
   @IsString()
-  name: string;
+  dishName: string;
 
   @IsNumber({
     maxDecimalPlaces: 4,
@@ -17,5 +24,8 @@ export class CreateDishDto {
   description: string;
 
   @IsUUID()
-  category_id: string;
+  categoryId: string;
+
+  @IsArray()
+  images: string[];
 }
