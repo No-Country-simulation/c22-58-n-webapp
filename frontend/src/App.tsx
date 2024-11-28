@@ -1,4 +1,5 @@
 import './index.css';
+import axios from 'axios';
 import Cocina from './components/Cocina';
 import Manager from './components/Manager';
 import Mesas from './components/Mesas';
@@ -6,6 +7,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Seleccion from './components/Seleccion';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// axios.defaults.baseURL = "URL DEL DEPLOY"
+axios.defaults.baseURL = 'http://localhost:3000';
 
 function App() {
   return (

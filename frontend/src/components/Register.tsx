@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const baseURL =
-  import.meta.env.MODE === 'development'
-    ? 'http://localhost:3000'
-    : 'el url del deploy';
+// const baseURL =
+//   import.meta.env.MODE === 'development'
+//     ? 'http://localhost:3000'
+//     : 'el url del deploy';
 
 type Inputs = {
   firstName: string;
@@ -31,7 +31,7 @@ function Register() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log('Registered!', data);
     try {
-      const response = await axios.post(baseURL + '/api/auth/register', data);
+      const response = await axios.post('/api/auth/register', data);
       console.log('respuesta del servidor', response.data);
       navigate('/');
     } catch (error) {
