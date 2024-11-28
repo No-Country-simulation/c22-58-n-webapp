@@ -1,4 +1,5 @@
 import './index.css';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Components
@@ -7,6 +8,8 @@ import Manager from './components/Manager';
 import Mesas from './components/Mesas';
 import Login from './components/Login';
 import Register from './components/Register';
+import Seleccion from './components/Seleccion';
+
 //import BarraNavegacionMenu from './components/BarraNavegacionMenu';
 
 // Components Categoria
@@ -30,8 +33,9 @@ function App() {
 	return (
 		<BrowserRouter>
 		<Routes>
-				<Route path="/" element={<Login />} />
-				<Route path="/register" element={<Register />} />
+			 <Route path="/" element={<Login />} />
+			 <Route path="/register" element={<Register />} />
+       <Route path="/seleccion" element={<Seleccion />} />
 			 <Route path="/mesas" element={<Mesas />} />
 			 <Route path="/cocina" element={<Cocina />} />
 			 <Route path="/manager" element={<Manager />} />
@@ -46,6 +50,5 @@ function App() {
 		</Routes>
 	 </BrowserRouter>
 	);
-}
 
 export default App;
