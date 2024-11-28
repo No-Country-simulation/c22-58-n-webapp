@@ -9,6 +9,8 @@ const baseURL =
     : 'el url del deploy';
 
 function Login() {
+  const navigate = useNavigate();
+
   type Inputs = {
     email: string;
     password: string;
@@ -28,6 +30,7 @@ function Login() {
       console.log('respuesta del servidor', response.data);
       document.cookie = `token=${response.data.token};SameSite=Lax;path=/`;
       console.log(document.cookie);
+      navigate('/seleccion');
     } catch (error) {
       console.error('error al enviar los datos', error);
     }
