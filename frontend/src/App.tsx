@@ -33,22 +33,23 @@ function App() {
 	return (
 		<BrowserRouter>
 		<Routes>
-			 <Route path="/" element={<Login />} />
-			 <Route path="/register" element={<Register />} />
-       <Route path="/seleccion" element={<Seleccion />} />
-			 <Route path="/mesas" element={<Mesas />} />
-			 <Route path="/cocina" element={<Cocina />} />
-			 <Route path="/manager" element={<Manager />} />
-			 <Route path="/categorias" element={<LayoutAdmin />}>
-				 <Route index element={<Home />} />
-				 <Route path="categoria1" element={<CardCategoria1 />} />
-				 <Route path="categoria2" element={<CardCategoria2 />} />
-				 <Route path="categoria3" element={<CardCategoria3 />} />
-			 </Route>
-			 <Route path='*' element={<Error404 />} />
+			<Route path="/" element={<Login />} />
+			<Route path="/register" element={<Register />} />
+       		<Route path="/seleccion" element={<Seleccion />} />
+			<Route path="/mesas" element={<Mesas />} />
+			<Route path="/cocina" element={<Cocina />} />
+			<Route path="/manager" element={<Manager />} />
+			<Route path="/categorias" element={<LayoutAdmin />}>
+				<Route index element={<Home />} />
+				<Route path="categoria1" element={<CardCategoria1 />} />
+				<Route path="categoria2" element={<CardCategoria2 />} />
+				<Route path="categoria3" element={<CardCategoria3 />} />
+			</Route>
+			<Route path='*' element={<Error404 />} />
 			 
 		</Routes>
 	 </BrowserRouter>
 	);
+}
 
 export default App;
