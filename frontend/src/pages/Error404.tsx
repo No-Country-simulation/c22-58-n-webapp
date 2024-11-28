@@ -5,7 +5,7 @@ const Error404 = () => {
     const navigate = useNavigate();
 
     const handleRedirect = () => {
-        navigate('/mesas');
+        navigate('/seleccion');
 
     };
     return (
