@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+/* Estilo de las card de platillos para pantallas de 500px */
+@media (min-width: 500px) {
+    .card {
+        width: 350px;
+    }
+}
+
+/* Estilos de las card de platillos para pantallas de 1000px */
+@media (min-width: 1000px) {
+    .card {
+        width: 300px;
+        
+    }
+}
+
