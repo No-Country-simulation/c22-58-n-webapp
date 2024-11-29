@@ -9,13 +9,14 @@ import { useNavigate } from 'react-router-dom';
 //     : 'el url del deploy';
 
 function Login() {
-  const navigate = useNavigate();
 
   type Inputs = {
     email: string;
     password: string;
     confirmPassword: string;
   };
+
+  const navigate = useNavigate();
 
   const {
     register,
