@@ -46,18 +46,19 @@ export default function Mesas() {
 				</h3>
 				{posicionMesas.map((area: any) => {
 					if (area.nombreArea === areaSeleccionada) {
-						return area.mesas.map((mesitas: any) => {
-							console.log(mesitas);
-							return (
-								<MesaComponente
-									key={mesitas.id}
-									y={mesitas.y}
-									x={mesitas.x}
-									numero={mesitas.id}
-								/>
-							);
-						});
+						return area.mesas.map((mesitas: any) => (
+							//console.log(mesitas);
+							<MesaComponente
+								key={mesitas.id}
+								y={mesitas.y}
+								x={mesitas.x}
+								numero={mesitas.id}
+								totalCuenta={mesitas.totalCuenta}
+							/>
+						));
 					}
+					return null;								
+						
 				})}
 			</section>
 			<footer className="flex border-solid border-t-2 border-t-gray-500">
@@ -76,7 +77,7 @@ export default function Mesas() {
 					</li>
 				</ul>
 				<button className="p-3 m-3 min-w-40 bg-[#d7e7ff] border-solid border-2 border-gray-500">
-					cuenta
+					Cuenta
 				</button>
 				<button className="p-3 m-3 min-w-40 mr-20 bg-[#d7e7ff] border-solid border-2 border-gray-500">
 					levantar pedido
