@@ -1,4 +1,5 @@
 import './index.css';
+import axios from 'axios';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -29,6 +30,9 @@ import Error404 from './pages/Error404';
 // Layouts
 import LayoutAdmin from './layouts/LayoutAdmin';
 
+
+// axios.defaults.baseURL = "URL DEL DEPLOY"
+axios.defaults.baseURL = 'http://localhost:3000';
 
 function App() {
 	return (

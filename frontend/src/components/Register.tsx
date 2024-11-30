@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const baseURL =
-  import.meta.env.MODE === 'development'
-    ? 'http://localhost:3000'
-    : 'el url del deploy';
+// const baseURL =
+//   import.meta.env.MODE === 'development'
+//     ? 'http://localhost:3000'
+//     : 'el url del deploy';
 
 type Inputs = {
   firstName: string;
@@ -31,7 +31,7 @@ function Register() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log('Registered!', data);
     try {
-      const response = await axios.post(baseURL + '/api/auth/register', data);
+      const response = await axios.post('/api/auth/register', data);
       console.log('respuesta del servidor', response.data);
       navigate('/');
     } catch (error) {
@@ -52,23 +52,23 @@ function Register() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-96 flex-col gap-2 rounded-md border p-6"
         >
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="firstName">Nombre</label>
           <input
             type="text"
             className="mb-4 h-10 w-80 rounded-md border outline-none"
-            id="nombre"
+            id="firstName"
             {...register('firstName', {
-              required: 'nombre required',
+              required: 'Name required',
             })}
           />
 
-          <label htmlFor="apellidos">Apellidos</label>
+          <label htmlFor="lastName">Apellidos</label>
           <input
             type="text"
             className="mb-4 h-10 w-80 rounded-md border outline-none"
-            id="apellidos"
+            id="lastName"
             {...register('lastName', {
-              required: 'apellidos required',
+              required: 'Lastname required',
             })}
           />
 
@@ -78,7 +78,7 @@ function Register() {
             className="mb-4 h-10 w-80 rounded-md border outline-none"
             id="username"
             {...register('userName', {
-              required: 'username required',
+              required: 'Username required',
             })}
           />
 

@@ -3,19 +3,20 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const baseURL =
-  import.meta.env.MODE === 'development'
-    ? 'http://localhost:3000'
-    : 'el url del deploy';
+// const baseURL =
+//   import.meta.env.MODE === 'development'
+//     ? 'http://localhost:3000'
+//     : 'el url del deploy';
 
 function Login() {
-  const navigate = useNavigate();
 
   type Inputs = {
     email: string;
     password: string;
     confirmPassword: string;
   };
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,7 +27,7 @@ function Login() {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log('Logged', data);
     try {
-      const response = await axios.post(baseURL + '/api/auth/login', data);
+      const response = await axios.post('/api/auth/login', data);
       console.log('respuesta del servidor', response.data);
       document.cookie = `token=${response.data.token};SameSite=Lax;path=/`;
       console.log(document.cookie);
