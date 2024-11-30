@@ -10,6 +10,7 @@ import Mesas from './components/Mesas';
 import Login from './components/Login';
 import Register from './components/Register';
 import Seleccion from './components/Seleccion';
+import Cuentas from './components/cuentas/Cuentas';
 
 //import BarraNavegacionMenu from './components/BarraNavegacionMenu';
 
@@ -49,6 +50,7 @@ function App() {
 				<Route path="categoria2" element={<CardCategoria2 />} />
 				<Route path="categoria3" element={<CardCategoria3 />} />
 			</Route>
+			<Route path="/cuentas/:numeroMesa/:totalCuenta" element={<Cuentas />} />
 			<Route path='*' element={<Error404 />} />
 			 
 		</Routes>
