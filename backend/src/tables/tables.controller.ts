@@ -15,7 +15,8 @@ import { CreateTableDto, UpdateTableDto } from './dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
 import { PaginationDto } from 'src/common/dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags, ApiBody } from '@nestjs/swagger';
+
 
 @ApiTags('tables')
 @Controller('tables')
@@ -25,7 +26,16 @@ export class TablesController {
   @HttpCode(200)
   @Auth(ValidRoles.manager, ValidRoles.waiter)
   @Post()
-  createUser(@Body() createTableDto: CreateTableDto) {
+  @ApiOperation({ summary: 'No funciona todavia' })
+  @ApiBody({
+    schema: {
+      example: {
+        tableNumber: 1,
+        capacity: 4,
+      },
+    },
+  })
+  create(@Body() createTableDto: CreateTableDto) {
     return this.tablesService.create(createTableDto);
   }
 
