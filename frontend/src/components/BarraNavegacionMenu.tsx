@@ -1,13 +1,13 @@
 function BarraNavegacionMenu() {
-	return (
-		<header className="flex border-b-gray-500 h-24 border-solid border-2 w-screen items-center font-sans">
-			<h1 className="uppercase mr-auto ml-28 font-bold text-3xl">dishflow</h1>
-			<span className="uppercase mx-28 font-bold text-sm">numero de mesa</span>
-			<span className="uppercase mx-28 font-bold text-sm">
-				nombre del mesero
-			</span>
-		</header>
-	);
+  return (
+    <header className="flex h-24 w-full items-center border-2 border-solid border-b-gray-500 font-sans">
+      <h1 className="ml-28 mr-auto text-3xl font-bold uppercase">dishflow</h1>
+      <span className="mx-28 text-sm font-bold uppercase">numero de mesa</span>
+      <span className="mx-28 text-sm font-bold uppercase">
+        nombre del mesero
+      </span>
+    </header>
+  );
 }
 
 export default BarraNavegacionMenu;
