@@ -16,7 +16,10 @@ import { UpdateClientDto } from './dto/update-client.dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
 import { PaginationDto } from 'src/common/dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('clients')
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}

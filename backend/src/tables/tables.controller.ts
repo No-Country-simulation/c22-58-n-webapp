@@ -15,7 +15,9 @@ import { CreateTableDto, UpdateTableDto } from './dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
 import { PaginationDto } from 'src/common/dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('tables')
 @Controller('tables')
 export class TablesController {
   constructor(private readonly tablesService: TablesService) {}
