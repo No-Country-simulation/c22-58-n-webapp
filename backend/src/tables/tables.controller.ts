@@ -10,12 +10,12 @@ import {
   Query,
   ParseUUIDPipe,
 } from '@nestjs/common';
+import { ApiOperation, ApiTags, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
 import { TablesService } from './tables.service';
-import { CreateTableDto, UpdateTableDto } from './dto';
 import { Auth } from 'src/auth/decorators';
 import { ValidRoles } from 'src/auth/enums/valid-roles';
+import { CreateTableDto, UpdateTableDto } from './dto';
 import { PaginationDto } from 'src/common/dto';
-import { ApiOperation, ApiTags, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @ApiTags('tables')
@@ -40,7 +40,7 @@ export class TablesController {
   }
 
   @HttpCode(200)
-  @Auth(ValidRoles.manager, ValidRoles.waiter, ValidRoles.user, ValidRoles.chef)
+  @Auth(ValidRoles.manager, ValidRoles.waiter)
   @Get()
   findAll(@Query() paginationDto: PaginationDto) {
     return this.tablesService.findAll(paginationDto);
