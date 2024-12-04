@@ -20,7 +20,7 @@ const OrdenActual = () => {
         <main className="w-full flex justify-center items-center">        
             <aside className="w-full px-2 pt-4 top-0 right-0 text-center xl:w-[70%]">
                 <header className="bg-blue-600 mt-[4.5rem] mb-7 h-[4rem] flex justify-center items-center xl:h-[5rem]">
-                    <h3 className="pb-5 text-white text-xl text-center font-bold lg:text-2xl xl:pb-14 xl:pb-3 2xl:text-4xl">Orden Actual</h3>
+                    <h3 className="pb-5 text-white text-xl text-center font-bold lg:text-2xl xl:pb-3 2xl:text-4xl">Orden Actual</h3>
                 </header>                
                 <div className="flex flex-col pb-8">
                     {productos.length === 0 ? (
