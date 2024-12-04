@@ -42,7 +42,7 @@ function App() {
 			<Route path="/mesas" element={<Mesas />} />
 			<Route path="/cocina" element={<Cocina />} />
 			<Route path="/manager" element={<Manager />} />
-      <Route path="/menu" element={<Menu />} />
+      		<Route path="/menu" element={<Menu />} />
 			<Route path="/categorias" element={<LayoutAdmin />}>
 				<Route index element={<Categorias />} />
 				<Route path="categoria1" element={<CardCategoria1 />} />

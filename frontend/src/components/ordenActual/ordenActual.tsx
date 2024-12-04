@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 // Icons
 import { RiDeleteBin6Line } from "react-icons/ri";
 
@@ -16,7 +15,6 @@ const OrdenActual = () => {
         //Filtrar los productos para eliminar el que se seleccionó
         setProductos(productos.filter((producto) => producto.id !== id));
     };
-
 
     return (
         <main className="w-full flex justify-center items-center">        
@@ -56,7 +54,5 @@ const OrdenActual = () => {
             </aside>
         </main>
     );
-
 }
-
 export default OrdenActual;
