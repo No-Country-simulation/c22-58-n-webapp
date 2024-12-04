@@ -6,53 +6,67 @@ import usePedidos from '../../store/Pedidos';
 
 function Cocina() {
   const posicionPedidos = usePedidos((state: any) => state.pedidos);
-  console.log(posicionPedidos);
 
-  /*   const [pedidoCocinaPendiente, setPedidoCocinaPendiente] = useState([
-    {
-      id: '#37594',
-      mesa: 'MESA #8',
-      items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-    },
-    {
-      id: '#37595',
-      mesa: 'MESA #5',
-      items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-    },
-    {
-      id: '#37596',
-      mesa: 'MESA #1',
-      items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-    },
-    {
-      id: '#37597',
-      mesa: 'MESA #3',
-      items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-    },
-    {
-      id: '#37598',
-      mesa: 'MESA #6',
-      items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-    },
-  ]);
+  // const [pedidoCocinaPendiente, setPedidoCocinaPendiente] = useState([
+  //   {
+  //     id: '#37594',
+  //     mesa: 'MESA #8',
+  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
+  //   },
+  //   {
+  //     id: '#37595',
+  //     mesa: 'MESA #5',
+  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
+  //   },
+  //   {
+  //     id: '#37596',
+  //     mesa: 'MESA #1',
+  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
+  //   },
+  //   {
+  //     id: '#37597',
+  //     mesa: 'MESA #3',
+  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
+  //   },
+  //   {
+  //     id: '#37598',
+  //     mesa: 'MESA #6',
+  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
+  //   },
+  // ]);
 
-  const [ordenCompletada, setOrdenCompletada] = useState([]);
 
+	//const marcarOrdenCompletada = (orden) => {
+		// console.log('Orden completada:', orden);
+		// console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
+		
+		//const newPendingOrders = pedidoCocinaPendiente.filter(o => o.id !== orden.id);
+  	//	const newCompletedOrders = [...ordenCompletada, orden];
+  
+		// console.log('Nuevos pedidos pendientes:', newPendingOrders);
+		// console.log('Nuevos pedidos completados:', newCompletedOrders);
+		
+	// 	setPedidoCocinaPendiente(newPendingOrders);
+	// 	setOrdenCompletada(newCompletedOrders);
+	// };
+	
+  //const [ordenCompletada, setOrdenCompletada] = useState([]);
+  
   const marcarOrdenCompletada = (orden) => {
-    console.log('Orden completada:', orden);
-    console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
+    //console.log('Orden completada:', orden);
+    //console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
 
     const newPendingOrders = pedidoCocinaPendiente.filter(
       (o) => o.id !== orden.id
     );
     const newCompletedOrders = [...ordenCompletada, orden];
 
-    console.log('Nuevos pedidos pendientes:', newPendingOrders);
-    console.log('Nuevos pedidos completados:', newCompletedOrders);
+    //console.log('Nuevos pedidos pendientes:', newPendingOrders);
+    //console.log('Nuevos pedidos completados:', newCompletedOrders);
 
     setPedidoCocinaPendiente(newPendingOrders);
     setOrdenCompletada(newCompletedOrders);
-  }; */
+  }; 
 
   return (
     <>
