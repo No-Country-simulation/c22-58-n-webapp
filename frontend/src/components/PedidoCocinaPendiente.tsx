@@ -31,5 +31,6 @@ function PedidoCocinaPendiente({ orden, onComplete}) {
 			</footer>
 		</section>
 	);
+}
 
 export default PedidoCocinaPendiente;

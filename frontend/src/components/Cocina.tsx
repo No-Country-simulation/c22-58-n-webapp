@@ -15,14 +15,14 @@ function Cocina() {
 	const [ordenCompletada, setOrdenCompletada] = useState([]);
 
 	const marcarOrdenCompletada = (orden) => {
-		console.log('Orden completada:', orden);
-		console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
+		// console.log('Orden completada:', orden);
+		// console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
 		
 		const newPendingOrders = pedidoCocinaPendiente.filter(o => o.id !== orden.id);
   		const newCompletedOrders = [...ordenCompletada, orden];
   
-		console.log('Nuevos pedidos pendientes:', newPendingOrders);
-		console.log('Nuevos pedidos completados:', newCompletedOrders);
+		// console.log('Nuevos pedidos pendientes:', newPendingOrders);
+		// console.log('Nuevos pedidos completados:', newCompletedOrders);
 		
 		setPedidoCocinaPendiente(newPendingOrders);
 		setOrdenCompletada(newCompletedOrders);
@@ -42,7 +42,7 @@ function Cocina() {
 				
 			</header>
 			<main className="w-full flex md:w-screen font-bold uppercase">
-				<section className="w-[60%] border-2 border-solid border-gray-200 h-full p-3 md:w-[75%] 2xl:h-screen">
+				<section className="w-[60%] border-2 border-solid border-gray-200 h-full p-3 md:w-[75%] md:pt-10 2xl:h-screen">
 					<h3 className='text-xl text-center font-bold text-slate-950 pb-3 xl:p-10'>Pendientes</h3>
 					<div className="w-full flex flex-wrap justify-center">
 						{pedidoCocinaPendiente.map((orden) => (
@@ -58,7 +58,6 @@ function Cocina() {
 				<aside className="w-[45%] px-2 pt-4 text-center md:w-[50%] md:flex md:flex-col md:p-10 lg:w-[40%] 2xl:w-[35%]">
 					<h3 className="mb-3 text-lg">Completadas</h3>
 					<div className="flex flex-col 2xl:justify-center 2xl:items-center">
-						{console.log('Pedidos completados:', ordenCompletada)}
 						{ordenCompletada.map((orden) => (
 							<PedidoCocinaCompletado
 								key={orden.id}

@@ -20,7 +20,7 @@ import CardCategoria2 from './components/categorias/CardCategoria2';
 import CardCategoria3 from './components/categorias/CardCategoria3';
 
 // Component
-import Home from './pages/admin/Home';
+import Categorias from './pages/admin/Categorias';
 
 
 // Pages
@@ -45,7 +45,7 @@ function App() {
 			<Route path="/cocina" element={<Cocina />} />
 			<Route path="/manager" element={<Manager />} />
 			<Route path="/categorias" element={<LayoutAdmin />}>
-				<Route index element={<Home />} />
+				<Route index element={<Categorias />} />
 				<Route path="categoria1" element={<CardCategoria1 />} />
 				<Route path="categoria2" element={<CardCategoria2 />} />
 				<Route path="categoria3" element={<CardCategoria3 />} />
