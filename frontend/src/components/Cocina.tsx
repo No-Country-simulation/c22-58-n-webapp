@@ -7,67 +7,6 @@ import usePedidos from '../../store/Pedidos';
 function Cocina() {
   const posicionPedidos = usePedidos((state: any) => state.pedidos);
 
-  // const [pedidoCocinaPendiente, setPedidoCocinaPendiente] = useState([
-  //   {
-  //     id: '#37594',
-  //     mesa: 'MESA #8',
-  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-  //   },
-  //   {
-  //     id: '#37595',
-  //     mesa: 'MESA #5',
-  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-  //   },
-  //   {
-  //     id: '#37596',
-  //     mesa: 'MESA #1',
-  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-  //   },
-  //   {
-  //     id: '#37597',
-  //     mesa: 'MESA #3',
-  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-  //   },
-  //   {
-  //     id: '#37598',
-  //     mesa: 'MESA #6',
-  //     items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
-  //   },
-  // ]);
-
-
-	//const marcarOrdenCompletada = (orden) => {
-		// console.log('Orden completada:', orden);
-		// console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
-		
-		//const newPendingOrders = pedidoCocinaPendiente.filter(o => o.id !== orden.id);
-  	//	const newCompletedOrders = [...ordenCompletada, orden];
-  
-		// console.log('Nuevos pedidos pendientes:', newPendingOrders);
-		// console.log('Nuevos pedidos completados:', newCompletedOrders);
-		
-	// 	setPedidoCocinaPendiente(newPendingOrders);
-	// 	setOrdenCompletada(newCompletedOrders);
-	// };
-	
-  //const [ordenCompletada, setOrdenCompletada] = useState([]);
-  
-  const marcarOrdenCompletada = (orden) => {
-    //console.log('Orden completada:', orden);
-    //console.log('Pedidos pendientes actuales:', pedidoCocinaPendiente);
-
-    const newPendingOrders = pedidoCocinaPendiente.filter(
-      (o) => o.id !== orden.id
-    );
-    const newCompletedOrders = [...ordenCompletada, orden];
-
-    //console.log('Nuevos pedidos pendientes:', newPendingOrders);
-    //console.log('Nuevos pedidos completados:', newCompletedOrders);
-
-    setPedidoCocinaPendiente(newPendingOrders);
-    setOrdenCompletada(newCompletedOrders);
-  }; 
-
   return (
     <>
       <header className="borde-solid box-border flex h-24 w-full items-center justify-between gap-2 border-b-2 border-slate-400 p-2">
@@ -113,4 +52,4 @@ function Cocina() {
   );
 }
 export default Cocina;
-//const [completedOrders, setCompletedOrders] = useState([]);
+

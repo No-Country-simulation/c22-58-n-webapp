@@ -8,5 +8,5 @@ function BarraNavegacionMenu() {
 			</span>
 		</header>
 	);
-
+}
 export default BarraNavegacionMenu;
