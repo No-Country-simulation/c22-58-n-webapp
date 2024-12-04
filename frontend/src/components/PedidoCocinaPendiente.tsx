@@ -33,3 +33,4 @@ export default function PedidoCocinaPendiente({ orden }) {
     </section>
   );
 }
+

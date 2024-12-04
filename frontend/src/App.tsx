@@ -21,7 +21,7 @@ import CardCategoria2 from './components/categorias/CardCategoria2';
 import CardCategoria3 from './components/categorias/CardCategoria3';
 
 // Component
-import Home from './pages/admin/Home';
+import Categorias from './pages/admin/Categorias';
 
 // Pages
 import Error404 from './pages/Error404';
@@ -33,27 +33,28 @@ import LayoutAdmin from './layouts/LayoutAdmin';
 axios.defaults.baseURL = 'http://localhost:3000';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/seleccion" element={<Seleccion />} />
-        <Route path="/mesas" element={<Mesas />} />
-        <Route path="/cocina" element={<Cocina />} />
-        <Route path="/manager" element={<Manager />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/categorias" element={<LayoutAdmin />}>
-          <Route index element={<Home />} />
-          <Route path="categoria1" element={<CardCategoria1 />} />
-          <Route path="categoria2" element={<CardCategoria2 />} />
-          <Route path="categoria3" element={<CardCategoria3 />} />
-        </Route>
-        <Route path="/cuentas/:numeroMesa/:totalCuenta" element={<Cuentas />} />
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+
+	return (
+		<BrowserRouter>
+		<Routes>
+			<Route path="/" element={<Login />} />
+			<Route path="/register" element={<Register />} />
+       		<Route path="/seleccion" element={<Seleccion />} />
+			<Route path="/mesas" element={<Mesas />} />
+			<Route path="/cocina" element={<Cocina />} />
+			<Route path="/manager" element={<Manager />} />
+      <Route path="/menu" element={<Menu />} />
+			<Route path="/categorias" element={<LayoutAdmin />}>
+				<Route index element={<Categorias />} />
+				<Route path="categoria1" element={<CardCategoria1 />} />
+				<Route path="categoria2" element={<CardCategoria2 />} />
+				<Route path="categoria3" element={<CardCategoria3 />} />
+			</Route>
+			<Route path="/cuentas/:numeroMesa/:totalCuenta" element={<Cuentas />} />
+			<Route path='*' element={<Error404 />} />
+			 
+		</Routes>
+	 </BrowserRouter>
+	);
 
 export default App;

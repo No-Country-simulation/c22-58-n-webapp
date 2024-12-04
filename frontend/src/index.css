@@ -7,7 +7,7 @@
 /* Estilo de las card de platillos para pantallas de 500px */
 @media (min-width: 500px) {
     .card {
-        width: 350px;
+        width: 230px;
     }
 }
 
