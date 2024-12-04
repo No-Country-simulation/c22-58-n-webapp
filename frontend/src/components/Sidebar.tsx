@@ -15,6 +15,11 @@ function Sidebar() {
                 <nav className="">
                     <ul className="flex flex-col gap-4">
                         <li className="">
+                            <Link to='/categorias' className="flex font-semibold text-slate-600 text-md items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-400 transition-colors md:text-lg xl:text-xl">Categorías</Link>
+                        </li>                  
+                    </ul>
+                    <ul className="flex flex-col gap-4">
+                        <li className="">
                             <Link to='categoria1' className="flex font-semibold text-slate-600 text-md items-center gap-3 py-2 px-4 rounded-lg hover:bg-slate-400 transition-colors md:text-lg xl:text-xl">Categoría 1</Link>
                         </li>                  
                     </ul>

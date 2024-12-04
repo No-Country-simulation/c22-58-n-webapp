@@ -3,7 +3,7 @@ function CardCategoria3() {
         <>
         <section className="flex flex-col justify-center items-center flex-wrap gap-3 mt-5 p-4">
             <div>
-                <h1 className="text-2xl text-slate-900 font-bold text-center pb-5 lg:text-4xl">Menú Destacado</h1>
+                <h1 className="text-xl text-slate-900 font-bold text-center pt-2 pb-5 lg:text-4xl">Menú Destacado</h1>
             </div>
             
             <div className="w-full flex flex-col justify-center items-center flex-wrap gap-5 md:justify-between md:flex-row lg:gap-9">
