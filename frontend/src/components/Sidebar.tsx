@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 
 function Sidebar() {
-
     const [toggleMenu, setToggleMenu] = useState(false);
     return (
         <>
@@ -47,5 +46,5 @@ function Sidebar() {
         </button>
         </>
     );
-    
+}    
 export default Sidebar;

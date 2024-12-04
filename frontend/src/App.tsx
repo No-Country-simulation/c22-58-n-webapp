@@ -33,7 +33,6 @@ import LayoutAdmin from './layouts/LayoutAdmin';
 axios.defaults.baseURL = 'http://localhost:3000';
 
 function App() {
-
 	return (
 		<BrowserRouter>
 		<Routes>
@@ -43,7 +42,7 @@ function App() {
 			<Route path="/mesas" element={<Mesas />} />
 			<Route path="/cocina" element={<Cocina />} />
 			<Route path="/manager" element={<Manager />} />
-      <Route path="/menu" element={<Menu />} />
+      		<Route path="/menu" element={<Menu />} />
 			<Route path="/categorias" element={<LayoutAdmin />}>
 				<Route index element={<Categorias />} />
 				<Route path="categoria1" element={<CardCategoria1 />} />
@@ -56,5 +55,6 @@ function App() {
 		</Routes>
 	 </BrowserRouter>
 	);
+}
 
 export default App;
