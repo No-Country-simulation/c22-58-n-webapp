@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Seleccion from './components/Seleccion';
 import Cuentas from './components/cuentas/Cuentas';
+import Menu from './components/Menu';
 
 //import BarraNavegacionMenu from './components/BarraNavegacionMenu';
 
@@ -22,19 +23,17 @@ import CardCategoria3 from './components/categorias/CardCategoria3';
 // Component
 import Categorias from './pages/admin/Categorias';
 
-
 // Pages
 import Error404 from './pages/Error404';
 
-
 // Layouts
 import LayoutAdmin from './layouts/LayoutAdmin';
-
 
 // axios.defaults.baseURL = "URL DEL DEPLOY"
 axios.defaults.baseURL = 'http://localhost:3000';
 
 function App() {
+
 	return (
 		<BrowserRouter>
 		<Routes>
@@ -44,6 +43,7 @@ function App() {
 			<Route path="/mesas" element={<Mesas />} />
 			<Route path="/cocina" element={<Cocina />} />
 			<Route path="/manager" element={<Manager />} />
+      <Route path="/menu" element={<Menu />} />
 			<Route path="/categorias" element={<LayoutAdmin />}>
 				<Route index element={<Categorias />} />
 				<Route path="categoria1" element={<CardCategoria1 />} />
@@ -56,6 +56,5 @@ function App() {
 		</Routes>
 	 </BrowserRouter>
 	);
-}
 
 export default App;

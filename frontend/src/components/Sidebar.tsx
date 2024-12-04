@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 // Icons
-import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 
 function Sidebar() {
+
     const [toggleMenu, setToggleMenu] = useState(false);
     return (
         <>
@@ -47,6 +48,4 @@ function Sidebar() {
         </>
     );
     
-}
-
 export default Sidebar;

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"; //el outlet nos sirve para agregarle un componente dentro de este componente
+import { Outlet } from 'react-router-dom'; //el outlet nos sirve para agregarle un componente dentro de este componente
 
 // Componentes
 import SideBar from "../components/Sidebar";
