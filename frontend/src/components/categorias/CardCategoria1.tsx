@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 function CardCategoria1() {
     return (
@@ -11,11 +11,14 @@ function CardCategoria1() {
             <div className="w-full flex flex-col justify-center items-center flex-wrap gap-5 md:justify-between md:flex-row lg:gap-9">
 
                 <div className="card w-[85%] border-double border-4 border-stone-700 flex flex-col gap-2 md:w-[46%] xl:w-[31%]">
-                    <div className="card-body p-2">
-                        <img className="w-full h-28 lg:h-36" src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_1280.jpg" alt="Imagen de los platos" />
-                        <h5 className="card-title text-md font-bold text-slate-700  text-center pt-3 lg:text-lg xl:text-xl">Nombre del plato</h5>
-                        <p className="text-end text-slate-700 text-md font-semibold pt-3 lg:text-lg xl:text-xl">$100.00</p>
-                    </div>
+                    <Link to='/categorias'>
+                        <div className="card-body p-2">
+                            <img className="w-full h-28 lg:h-36" src="https://cdn.pixabay.com/photo/2014/11/05/15/57/salmon-518032_1280.jpg" alt="Imagen de los platos" />
+                            <h5 className="card-title text-md font-bold text-slate-700  text-center pt-3 lg:text-lg xl:text-xl">Nombre del plato</h5>
+                            <p className="text-end text-slate-700 text-md font-semibold pt-3 lg:text-lg xl:text-xl">$100.00</p>
+                        </div>
+                    </Link>
+                    
                 </div>
                 <div className="card w-[85%]  border-double border-4 border-stone-700 flex flex-col gap-2 md:w-[46%] xl:w-[31%]">
                     <div className="card-body p-2">

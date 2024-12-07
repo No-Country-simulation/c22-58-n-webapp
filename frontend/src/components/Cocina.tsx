@@ -18,8 +18,8 @@ function Cocina() {
         </div>
       </header>
       <main className="flex w-full font-bold uppercase md:w-screen">
-        <section className="h-full w-[60%] border-2 border-solid border-gray-200 p-3 md:w-[75%] 2xl:h-screen">
-          <h3 className="pb-3 text-center text-xl font-bold text-slate-950 xl:p-10">
+        <section className="h-full w-[60%] border-2 border-solid border-gray-200 p-3 md:w-[75%] md:pt-10 2xl:h-screen">
+          <h3 className="pb-3 text-center text-xl font-bold text-slate-950">
             Pendientes
           </h3>
           <div className="flex w-full flex-wrap justify-center">
@@ -38,9 +38,7 @@ function Cocina() {
         <aside className="w-[40%] px-2 pt-4 text-center md:flex md:w-[25%] md:flex-col md:p-10 lg:w-[40%] 2xl:w-[25%]">
           <h3 className="mb-3 text-lg">Completadas</h3>
           <div className="flex flex-col 2xl:items-center 2xl:justify-center">
-            {/*             {console.log('Pedidos completados:', ordenCompletada)}
-            {ordenCompletada.map((orden) => ( */}
-            {posicionPedidos
+              {posicionPedidos
               .filter((orden: any) => orden.completado)
               .map((orden: any) => (
                 <PedidoCocinaCompletado key={orden.id} orden={orden} />

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'; //el outlet nos sirve para agregarle 
 // Componentes
 import SideBar from "../components/Sidebar";
 import BarraNavegacionMenu from "../components/BarraNavegacionMenu";
-import OrdenActual from "../components/ordenActual/ordenActual";
+import OrdenActual from "../components/ordenActual/OrdenActual";
 
 function LayoutAdmin() {
     return (
