@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 const useMesas = create((set) => ({
+  mesaSeleccionada: 1,
   areas: [
     {
       nombreArea: 'principal',
@@ -63,6 +64,7 @@ const useMesas = create((set) => ({
       ],
     },
   ],
+  setMesa: (nuevaMesa: number) => set({ mesaSeleccionada: nuevaMesa }),
 }));
 
 export default useMesas;
