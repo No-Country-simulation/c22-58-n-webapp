@@ -39,6 +39,10 @@ const usePedidos = create((set) => ({
         pedido.id === id ? { ...pedido, completado: true } : pedido
       ),
     })),
+  agregarPedido: (nuevoPedido: any) =>
+    set((state: any) => ({
+      pedidos: [...state.pedidos, nuevoPedido],
+    })),
 }));
 
 export default usePedidos;
