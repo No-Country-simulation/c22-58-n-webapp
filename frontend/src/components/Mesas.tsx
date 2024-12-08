@@ -1,11 +1,12 @@
 import MesaComponente from './MesaComponente';
 import useMesas from '../../store/Mesas';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Mesas() {
+  const navigate = useNavigate();
   const posicionMesas = useMesas((state: any) => state.areas);
-  //console.log(posicionMesas);
+  
   const [areaSeleccionada, setAreaSeleccionada] = useState(
     posicionMesas[0].nombreArea
   );
@@ -119,8 +120,7 @@ export default function Mesas() {
           Cuenta
         </Link>
 
-        <Link
-          to={`/categorias`} 
+        <button
           className="flex justify-center items-center m-3 mr-20 min-w-40 border-2 border-solid border-gray-500 bg-[#d7e7ff] p-3 uppercase"
           style={{ 
             pointerEvents: hayMesaParaPedido ? 'auto' : 'none',
@@ -128,9 +128,10 @@ export default function Mesas() {
             color: estadoMesa !== 'ocupada' ? 'black' : 'red'
 
           }}
+          onClick={() => navigate('/categorias')}
         >
           levantar pedido
-        </Link>
+        </button>
                  
       </footer>
     </main>
