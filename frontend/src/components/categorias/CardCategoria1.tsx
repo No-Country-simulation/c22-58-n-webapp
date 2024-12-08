@@ -7,7 +7,6 @@ function CardCategoria1() {
     const ordenes = useOrdenActual((state: any) => state);
 
     return (
-        
         <section className="flex flex-col justify-center items-center flex-wrap gap-3 mt-5 p-4">
             <div>
                 <h1 className="text-xl text-slate-900 font-bold text-center pt-2 pb-5 lg:text-4xl">Menú Destacado</h1>

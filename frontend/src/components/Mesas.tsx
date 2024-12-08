@@ -19,7 +19,9 @@ export default function Mesas() {
   }
 
   function handleClickEnMesa(numero: number) {
-    
+
+    useMesas.getState().setMesa(numero);
+        
     setEstadoMesa(prevEstados => {
       const estadoActual = prevEstados[numero] || 'disponible';
 
