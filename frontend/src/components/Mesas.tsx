@@ -1,31 +1,51 @@
 import MesaComponente from './MesaComponente';
 import useMesas from '../../store/Mesas';
 import { useState } from 'react';
-import Cuentas from './cuentas/Cuentas';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Mesas() {
-  const { mesaSeleccionada, setMesa } = useMesas((state: any) => state);
   const navigate = useNavigate();
-
   const posicionMesas = useMesas((state: any) => state.areas);
-  console.log(posicionMesas);
+  
   const [areaSeleccionada, setAreaSeleccionada] = useState(
     posicionMesas[0].nombreArea
   );
-  //const [mesaSeleccionada, , setMesaSeleccionada] = useState();
+  //const [mesaSeleccionada, setMesaSeleccionada] = useState();
+
+  const [estadoMesa, setEstadoMesa] = useState<{[key: number]: 'disponible' | 'pedido' | 'ocupada'}>({});
+
 
   function handleClickOtherArea(str: string) {
     setAreaSeleccionada(str);
   }
-  console.log(mesaSeleccionada);
+  //console.log(mesaSeleccionada);
 
-  function handleClickEnMesa(numero: any) {
-    console.log(numero);
-    setMesa(numero);
-    /*     console.log(numero);
-    setMesaSeleccionada(numero); */
+  function handleClickEnMesa(numero: number) {
+
+    useMesas.getState().setMesa(numero);
+        
+    setEstadoMesa(prevEstados => {
+      const estadoActual = prevEstados[numero] || 'disponible';
+
+      const nuevoEstado = 
+        estadoActual === 'disponible' ? 'pedido' :
+        estadoActual === 'pedido' ? 'ocupada' :
+        'disponible';
+
+        return {
+          ...prevEstados,
+          [numero]: nuevoEstado
+        };
+    });
   }
+
+  const hayMesaParaPedido = Object.entries(estadoMesa).find(
+    ([_, estado]) => estado === 'pedido'
+  );
+
+  const hayMesasOcupadas = Object.entries(estadoMesa).find(
+    ([_, estado]) => estado === 'ocupada'
+  );
 
   return (
     <main className="grid h-screen grid-cols-[20%,80%] grid-rows-[6rem,1fr,9rem] font-sans font-bold uppercase">
@@ -68,8 +88,8 @@ export default function Mesas() {
                 x={mesitas.x}
                 numero={mesitas.id}
                 totalCuenta={mesitas.totalCuenta}
+                estadoMesa={estadoMesa[mesitas.id] || 'disponible'}
                 funcion={handleClickEnMesa}
-                mesaSeleccionada={mesaSeleccionada}
               />
             ));
           }
@@ -91,18 +111,32 @@ export default function Mesas() {
             mesa seleccionada
           </li>
         </ul>
-        <Link
-          className="m-3 flex min-w-40 items-center justify-center border-2 border-solid border-gray-500 bg-[#d7e7ff] p-3"
-          to={`/cuentas/${mesaSeleccionada}/500`}
-        >
+        
+          <Link
+            className="m-3 flex min-w-40 items-center justify-center border-2 border-solid border-gray-500 bg-[#d7e7ff] p-3"
+            to={hayMesasOcupadas ? `/cuentas/${hayMesasOcupadas[0]}/500` : '#'}
+            style={{ 
+              pointerEvents: hayMesasOcupadas ? 'auto' : 'none', 
+              opacity: hayMesasOcupadas ? 1 : 0.5,
+              color: 'black'
+            }}
+          >
           Cuenta
         </Link>
+
         <button
-          className="m-3 mr-20 min-w-40 border-2 border-solid border-gray-500 bg-[#d7e7ff] p-3 uppercase"
+          className="flex justify-center items-center m-3 mr-20 min-w-40 border-2 border-solid border-gray-500 bg-[#d7e7ff] p-3 uppercase"
+          style={{ 
+            pointerEvents: hayMesaParaPedido ? 'auto' : 'none',
+            opacity: hayMesaParaPedido ? 1 : 0.5,
+            color: estadoMesa !== 'ocupada' ? 'black' : 'red'
+
+          }}
           onClick={() => navigate('/categorias')}
         >
           levantar pedido
         </button>
+                 
       </footer>
     </main>
   );

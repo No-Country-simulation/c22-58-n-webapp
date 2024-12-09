@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'; //el outlet nos sirve para agregarle un componente dentro de este componente
 
 // Componentes
-import SideBar from '../components/Sidebar';
-import BarraNavegacionMenu from '../components/BarraNavegacionMenu';
-import OrdenActual from '../components/ordenActual/ordenActual';
+import SideBar from "../components/Sidebar";
+import BarraNavegacionMenu from "../components/BarraNavegacionMenu";
+import OrdenActual from "../components/ordenActual/OrdenActual";
 import useMesas from '../../store/Mesas';
 
 function LayoutAdmin() {
