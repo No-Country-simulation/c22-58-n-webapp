@@ -6,6 +6,7 @@ import usePedidos from '../../store/Pedidos';
 
 function Cocina() {
   const posicionPedidos = usePedidos((state: any) => state.pedidos);
+  console.log(posicionPedidos);
 
   return (
     <>
@@ -50,4 +51,3 @@ function Cocina() {
   );
 }
 export default Cocina;
-

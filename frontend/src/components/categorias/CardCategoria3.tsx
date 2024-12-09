@@ -41,8 +41,8 @@ function CardCategoria3() {
                     ))}
             </div>            
         </section>
-    );
-    
+    );   
+
 }
 
 export default CardCategoria3;
