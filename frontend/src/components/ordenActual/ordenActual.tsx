@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 // Icons
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import useOrdenActual from '../../../store/OrdenActual';
-import useMesas from '../../../store/Mesas';
-import usePedidos from '../../../store/Pedidos';
-import { useNavigate } from 'react-router-dom';
 
 //Components
 import useOrdenActual from "../../../store/OrdenActual";
