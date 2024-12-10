@@ -51,4 +51,3 @@ function Cocina() {
   );
 }
 export default Cocina;
-

@@ -14,9 +14,11 @@ export default function Mesas() {
 
   const [estadoMesa, setEstadoMesa] = useState<{[key: number]: 'disponible' | 'pedido' | 'ocupada'}>({});
 
+
   function handleClickOtherArea(str: string) {
     setAreaSeleccionada(str);
   }
+  //console.log(mesaSeleccionada);
 
   function handleClickEnMesa(numero: number) {
 
@@ -49,7 +51,7 @@ export default function Mesas() {
     <main className="grid h-screen grid-cols-[20%,80%] grid-rows-[6rem,1fr,9rem] font-sans font-bold uppercase">
       <header className="col-span-full flex items-center border-b-2 border-solid border-b-gray-500">
         <h1 className="ml-28 mr-auto text-3xl">dishflow</h1>
-        <span className="mr-28">nombre del mesero</span>
+        {/*         <span className="mr-28">nombre del mesero</span> */}
       </header>
       <aside className="relative col-span-1 row-span-2 border-r-2 border-solid border-r-gray-500 py-2 text-center">
         <h2 className="border-b-2 border-solid border-b-gray-500 py-3 text-xl text-[#27569d]">

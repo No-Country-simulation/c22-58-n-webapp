@@ -43,8 +43,8 @@ function CardCategoria2() {
             </div>            
         </section>     
         </>
-    );
-    
+    );    
+
 }
 
 export default CardCategoria2;
