@@ -1,12 +1,7 @@
 import { create } from 'zustand';
 
 const useOrdenActual = create((set) => ({
-  orden: [
-    {
-      nombre: 'producto 1',
-      precio: 100,
-    },
-  ],
+  orden: [],
   agregarALaOrden: (nuevo) =>
     set((state) => ({
       orden: [...state.orden, nuevo],

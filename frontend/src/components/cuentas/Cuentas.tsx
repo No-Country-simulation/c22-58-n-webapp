@@ -1,25 +1,44 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import usePedidos from '../../../store/Pedidos';
 
 const Cuentas = () => {
+  const navigate = useNavigate();
+  const { pedidos, eliminarPedido } = usePedidos();
   // Obtenemos los parametros de la url
-  const { numeroMesa, totalCuenta } = useParams<{
+  let { numeroMesa, totalCuenta } = useParams<{
     numeroMesa: string;
     totalCuenta: string;
   }>();
 
+  const items = recuperandoItems();
+  console.log('items', items);
+
   // Estado para manejar los productos de la cuenta
-  const [productos, setProductos] = useState([
-    { id: 1, nombre: 'Hamburguesa', precio: 10.99, cantidad: 2 },
-    { id: 2, nombre: 'Refresco', precio: 2.5, cantidad: 3 },
-    { id: 3, nombre: 'Papas fritas', precio: 4.5, cantidad: 1 },
-  ]);
+  const [productos, setProductos] = useState(items);
+
+  function recuperandoItems() {
+    const nume = +numeroMesa;
+    for (let i = 0; i < pedidos.length; i++) {
+      if (pedidos[i].mesa === nume) {
+        totalCuenta = pedidos[i].total;
+        return pedidos[i].items;
+      }
+    }
+  }
+
+  function cuentaCobrada(numeroMesa) {
+    eliminarPedido(numeroMesa);
+    navigate('/mesas');
+  }
 
   // Calcular subtotal
-  const subtotal = productos.reduce(
+
+  const subtotal = totalCuenta;
+  /*   const subtotal = productos.reduce(
     (total, producto) => total + producto.precio * producto.cantidad,
     0
-  );
+  ); */
 
   // Calcular impuestos (por ejemplo, 16%)
   const impuestos = subtotal * 0.16;
@@ -45,20 +64,20 @@ const Cuentas = () => {
             <thead className="bg-gray-200">
               <tr className="text-slate-700">
                 <th className="p-2">Producto</th>
-                <th className="p-2">Cantidad</th>
+                {/*               <th className="p-2">Cantidad</th>
                 <th className="p-2">Precio Unitario</th>
-                <th className="p-2 text-right">Total</th>
+                <th className="p-2 text-right">Total</th> */}
               </tr>
             </thead>
             <tbody className="text-center text-slate-800">
-              {productos.map((producto) => (
-                <tr key={producto.id} className="border-b">
-                  <td className="p-2">{producto.nombre}</td>
-                  <td className="p-2">{producto.cantidad}</td>
+              {productos.map((producto, idx) => (
+                <tr key={idx} className="border-b">
+                  <td className="p-2">{producto}</td>
+                  {/*              <td className="p-2">{producto.cantidad}</td>
                   <td className="p-2">${producto.precio.toFixed(2)}</td>
                   <td className="p-2 text-right">
                     ${(producto.precio * producto.cantidad).toFixed(2)}
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>
@@ -85,7 +104,10 @@ const Cuentas = () => {
           <button className="rounded bg-green-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-green-600">
             Imprimir Cuenta
           </button>
-          <button className="rounded bg-red-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-red-600">
+          <button
+            className="rounded bg-red-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-red-600"
+            onClick={() => cuentaCobrada(+numeroMesa)}
+          >
             Cobrar
           </button>
         </div>

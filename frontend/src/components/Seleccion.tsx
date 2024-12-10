@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-const opciones = ['Cocina', 'Mesero', 'Manager'];
-const links = ['/cocina', '/mesas', '/manager'];
+const opciones = ['Cocina', 'Mesero'];
+const links = ['/cocina', '/mesas'];
 
 export default function Seleccion() {
   const navigate = useNavigate();
