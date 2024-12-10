@@ -101,7 +101,7 @@ const OrdenActual = () => {
                     </button>
                 </footer>
             </aside>
-            <button onClick={() => navigate('/cocina')}>Ir a cocina</button>
+            {/* <button onClick={() => navigate('/cocina')}>Ir a cocina</button> */}
         </main>
     );
 }
