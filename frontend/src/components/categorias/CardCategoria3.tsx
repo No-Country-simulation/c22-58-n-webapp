@@ -3,7 +3,7 @@ import useMenu from '../../../store/Menu'
 import useOrdenActual from '../../../store/OrdenActual';
 
 function CardCategoria3() {
-    const elMenu = useMenu((state: any) => state.categoria1);
+    const elMenu = useMenu((state: any) => state.categoria3);
     const ordenes = useOrdenActual((state: any) => state);
 
     return (        
@@ -16,7 +16,7 @@ function CardCategoria3() {
                 <div className="w-full flex flex-col justify-center items-center flex-wrap gap-5 md:justify-between md:flex-row lg:gap-9">
                     {elMenu.map((element: any, idx) => (
                         <div 
-                            className="card w-[85%] border-double border-4 border-stone-700 flex flex-col gap-2 md:w-[46%] xl:w-[31%]"
+                            className="card w-[85%] border-double border-4 border-stone-700 flex flex-col gap-2 cursor-pointer md:w-[46%] xl:w-[31%] 2xl:w-[30%]"
                             key={idx}
                             onClick={() => 
                                 ordenes.agregarALaOrden({

@@ -28,13 +28,13 @@ const useMenu = create((set) => ({
     },
     {
       imagen:
-        'https://cdn.pixabay.com/photo/2024/09/19/10/26/ai-generated-9058360_1280.jpg',
+        'https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706_1280.jpg',
       nombre: 'nombre del platillo5',
       precio: 500,
     },
     {
       imagen:
-        'https://cdn.pixabay.com/photo/2024/09/19/10/26/ai-generated-9058360_1280.jpg',
+        'https://cdn.pixabay.com/photo/2021/01/19/08/47/sandwich-5930496_1280.jpg',
       nombre: 'nombre del platillo6',
       precio: 600,
     },

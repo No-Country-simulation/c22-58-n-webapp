@@ -1,12 +1,8 @@
-import { useState } from "react";
+//import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Icons
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import useOrdenActual from '../../../store/OrdenActual';
-import useMesas from '../../../store/Mesas';
-import usePedidos from '../../../store/Pedidos';
-import { useNavigate } from 'react-router-dom';
 
 //Components
 import useOrdenActual from "../../../store/OrdenActual";
@@ -21,31 +17,43 @@ const OrdenActual = () => {
     const navigate = useNavigate();
 
     let total = 0;
-    let elPedido = {
-        id: Math.floor(Math.random() * 300000),
-        mesa: mesa,
-        items: arrayProductos(productos),
-        completado: false,
-    };
-    console.log(elPedido);
+    
+    const handleEnviarCocina = () => {
+        //Creamos el objetos del pedido
+        let elPedido = {
+            id: `#${Math.floor(Math.random() * 90000) + 10000}`,
+            mesa: `Mesa: ${mesa}`,
+            items: productos.map(producto => producto.nombre),
+            total: total,
+            completado: false,
+        };
+        console.log(elPedido);
+
+        agregarPedido(elPedido); //se agrega el pedido al store
+        ordenes.limpiarOrden();
+        navigate("/cocina");
+
+    }
     
 
     const pedidos = usePedidos((state) => state.pedidos);
     console.log(pedidos);
     
-    function arrayProductos(productos) {
-        const newArray = [];
-        productos.forEach((producto) => {
-            newArray.push(producto.nombre);
-        });
-        return newArray;        
-    }
+    //funcion para obtener los productos en el formato adecuado
+    // function arrayProductos(productos) {
+    //     const newArray = [];
+    //     productos.forEach((producto) => {
+    //         newArray.push(producto.nombre);
+    //     });
+    //     return newArray;        
+    // }
 
     //Función para eliminar el producto
     const eliminarProducto = (id: string) => {
-        ordenes.quitarAlaOrden(id);
+        ordenes.quitarALaOrden(id);
     };
 
+    //Calcular el total del pedido
     function elTotal(element:any) {
         element.forEach((element: any) => {
             total += element.precio;            
@@ -87,13 +95,13 @@ const OrdenActual = () => {
                     </div>
                     <button 
                         className="h-10 w-full bg-red-500 text-xs rounded-md lg:text-xl uppercase text-white"
-                        onClick={() => agregarPedido(elPedido)}
+                        onClick={handleEnviarCocina}
                     >
                         enviar a cocina
                     </button>
                 </footer>
             </aside>
-            <button onClick={() => navigate('/cocina')}>Ir a cocina</button>
+            {/* <button onClick={() => navigate('/cocina')}>Ir a cocina</button> */}
         </main>
     );
 }
