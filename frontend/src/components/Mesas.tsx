@@ -53,14 +53,12 @@ export default function Mesas() {
     for (let i = 0; i < pedidos.length; i++) {
       let numero = pedidos[i].mesa;
       console.log(numero);
-      if (!pedidos[i].completado) {
-        setEstadoMesa((prevEstados) => {
-          return {
-            ...prevEstados,
-            [numero]: 'ocupada',
-          };
-        });
-      }
+      setEstadoMesa((prevEstados) => {
+        return {
+          ...prevEstados,
+          [numero]: 'ocupada',
+        };
+      });
     }
   }
 

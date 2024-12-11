@@ -2,13 +2,13 @@ import { create } from 'zustand';
 
 const usePedidos = create((set) => ({
   pedidos: [
-    {
+    /*     {
       id: '#37594',
       mesa: 1,
       items: ['Hamburguesa 1', 'hot dog', 'Quesadilla'],
       total: 200,
       completado: false,
-    },
+    }, */
   ],
   marcarCompletado: (id: any) =>
     set((state: any) => ({

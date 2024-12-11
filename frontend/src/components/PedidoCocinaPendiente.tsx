@@ -4,10 +4,10 @@ export default function PedidoCocinaPendiente({ orden }) {
   const { marcarCompletado } = usePedidos();
 
   return (
-    <section className="relative m-3 min-h-56 w-60 bg-[#d7e7ff] p-3 md:w-64 md:h-60 lg:w-72 xl:h-64 2xl:w-60">
+    <section className="relative m-3 max-h-fit min-h-56 w-60 bg-[#d7e7ff] p-3 md:w-64 lg:w-72 2xl:w-60">
       <header className="mb-2 flex">
         <span className="mr-auto">{orden.id}</span>
-        <span>{orden.mesa}</span>
+        <span>Mesa #{orden.mesa}</span>
       </header>
       <main>
         <ul className="text-md pb-5 lg:pt-3 lg:text-lg">
