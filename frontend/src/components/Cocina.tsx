@@ -25,7 +25,7 @@ function Cocina() {
           </h2>
         </div>
       </header>
-      <main className="flex w-full font-bold uppercase md:w-screen">
+      <main className="flex h-screen w-full font-bold uppercase md:w-screen">
         <section className="h-full w-[60%] border-2 border-solid border-gray-200 p-3 md:w-[68%] md:pt-10 2xl:h-screen">
           <h3 className="pb-3 text-center text-xl font-bold text-slate-950">
             Pendientes
