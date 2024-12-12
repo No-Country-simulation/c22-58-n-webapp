@@ -2,93 +2,81 @@
 
 Proyecto No Country c22-58-n-webapp
 
-DishFlow
+# DishFlow
 
 DishFlow es una aplicación diseñada para mejorar la eficiencia y la experiencia en restaurantes, modernizando la gestión de pedidos y el servicio al cliente mediante el uso de tecnología.
 
-Descripción del Proyecto
+## Descripción del Proyecto
 
 DishFlow permite:
 
-Gestión de pedidos: Recoge pedidos desde una tablet asignándolos a las mesas correspondientes.
-
-Visualización de cuentas: Muestra la cuenta de cada pedido para facilitar el cobro.
-
-Sección de cocina: Los pedidos se actualizan en tiempo real, permitiendo que la cocina comience su preparación de manera inmediata.
+- **Gestión de pedidos:** Recoge pedidos desde una tablet asignándolos a las mesas correspondientes.
+- **Visualización de cuentas:** Muestra la cuenta de cada pedido para facilitar el cobro.
+- **Sección de cocina:** Los pedidos se actualizan en tiempo real, permitiendo que la cocina comience su preparación de manera inmediata.
 
 Con DishFlow, los restaurantes pueden atender más rápido a los clientes, ofreciendo un servicio moderno y dejando una excelente impresión.
 
-Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 El proyecto fue desarrollado con las siguientes herramientas y tecnologías:
 
-Frontend: React, React Router
+- **Frontend:** React, React Router
+- **Backend:** NestJS
+- **ORM:** Prisma
+- **Autenticación:** JSON Web Tokens (JWT)
+- **Gestión de paquetes:** npm, pnpm
 
-Backend: NestJS
+## Instalación y Configuración
 
-ORM: Prisma
+1. Clona este repositorio:
 
-Autenticación: JSON Web Tokens (JWT)
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd dishflow
+   ```
 
-Gestión de paquetes: npm, pnpm
+2. Instala las dependencias:
 
-Instalación y Configuración
+   - **Backend:**
+     ```bash
+     cd backend
+     pnpm install
+     ```
+   - **Frontend:**
+     ```bash
+     cd frontend
+     npm install
+     ```
 
-Clona este repositorio:
+3. Configura las variables de entorno en un archivo `.env` en las carpetas correspondientes.
 
-git clone <URL_DEL_REPOSITORIO>
-cd dishflow
+4. Ejecuta el proyecto:
+   - **Backend:**
+     ```bash
+     pnpm start
+     ```
+   - **Frontend:**
+     ```bash
+     npm run dev
+     ```
 
-Instala las dependencias:
+## Uso
 
-Backend:
+1. **Inicio de sesión:** Ingresa con tus credenciales asignadas.
+2. **Gestión de pedidos:**
+   - Asigna pedidos a las mesas.
+   - Consulta la cuenta de cada pedido.
+3. **Sección de cocina:** Observa los pedidos actualizándose en tiempo real para comenzar la preparación.
 
-cd backend
-pnpm install
+## Contribuidores
 
-Frontend:
+- Andres Ardilla
+- Ruben Lopez
+- Oscar Lozano
+- Matias Cardillo
+- Bryan Alegria
+- Daniel Diaz
 
-cd frontend
-npm install
+## Licencia
 
-Configura las variables de entorno en un archivo .env en las carpetas correspondientes.
-
-Ejecuta el proyecto:
-
-Backend:
-
-pnpm start
-
-Frontend:
-
-npm run dev
-
-Uso
-
-Inicio de sesión: Ingresa con tus credenciales asignadas.
-
-Gestión de pedidos:
-
-Asigna pedidos a las mesas.
-
-Consulta la cuenta de cada pedido.
-
-Sección de cocina: Observa los pedidos actualizándose en tiempo real para comenzar la preparación.
-
-Contribuidores
-
-Andres Ardilla
-
-Rubén López
-
-Oscar Lozano
-
-Matias Cardillo
-
-Bryan Alegria
-
-Daniel Diaz
-
-Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
