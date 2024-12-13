@@ -101,9 +101,9 @@ const Cuentas = () => {
 
         {/* Acciones */}
         <div className="mt-3 flex justify-between gap-4 p-4">
-          <button className="rounded bg-green-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-green-600">
+          {/*           <button className="rounded bg-green-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-green-600">
             Imprimir Cuenta
-          </button>
+          </button> */}
           <button
             className="rounded bg-red-500 px-4 py-2 text-white transition hover:scale-110 hover:bg-red-600"
             onClick={() => cuentaCobrada(+numeroMesa)}

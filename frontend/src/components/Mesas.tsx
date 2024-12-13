@@ -74,7 +74,7 @@ export default function Mesas() {
     <main className="grid h-screen grid-cols-[20%,80%] grid-rows-[6rem,1fr,9rem] font-sans font-bold uppercase">
       <header className="col-span-full flex items-center border-b-2 border-solid border-b-gray-500">
         <h1
-          className="ml-28 mr-auto text-3xl"
+          className="ml-28 mr-auto cursor-pointer text-3xl"
           onClick={() => navigate('/seleccion')}
         >
           dishflow

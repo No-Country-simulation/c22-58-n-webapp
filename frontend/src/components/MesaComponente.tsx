@@ -12,14 +12,14 @@ export default function MesaComponente({
   funcion: (numero: number) => void;
 }) {
   const coloresMesa = {
-    'disponible': 'bg-gray-500',
-    'pedido': 'bg-slate-400',
-    'ocupada': 'bg-red-500',
-  };  
-  
+    disponible: 'bg-gray-500',
+    pedido: 'bg-slate-400',
+    ocupada: 'bg-red-500',
+  };
+
   return (
     <div
-      className={`flex h-1/2 w-1/3 items-center justify-center rounded-full ${coloresMesa[estadoMesa]} text-xl leading-10 text-white`}
+      className={`flex h-1/2 w-1/3 items-center justify-center rounded-full ${coloresMesa[estadoMesa]} cursor-pointer text-xl leading-10 text-white`}
       style={{ gridColumn: x, gridRow: y }}
       onClick={() => {
         funcion(numero);

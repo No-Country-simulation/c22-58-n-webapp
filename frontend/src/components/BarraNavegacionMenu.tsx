@@ -8,7 +8,7 @@ function BarraNavegacionMenu() {
   return (
     <header className="flex h-24 items-center justify-between border-2 border-solid border-b-gray-500 font-sans">
       <h1
-        className="text-xl font-bold uppercase md:ml-28 md:mr-auto md:text-2xl"
+        className="cursor-pointer text-xl font-bold uppercase md:ml-28 md:mr-auto md:text-2xl"
         onClick={() => navigate('/seleccion')}
       >
         dishflow
